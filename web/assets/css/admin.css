@@ -1,0 +1,199 @@
+/* Admin CP Styles */
+:root {
+    --admin-bg: #1e2128;
+    --admin-sidebar: #14161a;
+    --admin-accent: #e74c3c;
+    --admin-accent-hover: #c0392b;
+    --admin-text: #ecf0f1;
+    --admin-border: #2c3e50;
+    --admin-card: #242830;
+    --admin-gold: #f39c12;
+}
+
+body.admin-theme {
+    background-color: var(--admin-bg);
+    color: var(--admin-text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.admin-sidebar {
+    width: 250px;
+    background-color: var(--admin-sidebar);
+    border-right: 1px solid var(--admin-border);
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-brand {
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--admin-accent);
+    text-align: center;
+    border-bottom: 1px solid var(--admin-border);
+    font-family: 'Trajan Pro', 'Cinzel', serif;
+}
+
+.admin-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    flex-grow: 1;
+}
+
+.admin-nav a {
+    padding: 1rem 1.5rem;
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.admin-nav a:hover, .admin-nav a.active {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: var(--admin-text);
+    border-left-color: var(--admin-accent);
+}
+
+.admin-nav .back-link {
+    margin-top: auto;
+    border-top: 1px solid var(--admin-border);
+    color: var(--admin-gold);
+}
+
+/* Main Content */
+.admin-content {
+    flex-grow: 1;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-header h1 {
+    margin: 0;
+    color: var(--admin-text);
+    font-size: 2rem;
+}
+
+/* Dashboard Cards */
+.admin-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.admin-stat-card {
+    background-color: var(--admin-card);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid var(--admin-border);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.admin-stat-card h3 {
+    margin: 0 0 0.5rem 0;
+    color: #bdc3c7;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.admin-stat-card .value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--admin-accent);
+}
+
+/* Tables */
+.admin-table-container {
+    background-color: var(--admin-card);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid var(--admin-border);
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th, .admin-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-table th {
+    color: var(--admin-gold);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    background-color: rgba(0,0,0,0.2);
+}
+
+.admin-table tr:hover {
+    background-color: rgba(255,255,255,0.02);
+}
+
+/* Utilities */
+.text-success { color: #2ecc71; }
+.text-danger { color: #e74c3c; }
+.text-warning { color: #f1c40f; }
+
+.badge {
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+.badge-gm { background-color: #8e44ad; color: white; }
+.badge-user { background-color: #34495e; color: white; }
+
+/* Forms/Filters */
+.admin-filter-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    background-color: var(--admin-card);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--admin-border);
+}
+
+.admin-input {
+    background-color: var(--admin-bg);
+    border: 1px solid var(--admin-border);
+    color: var(--admin-text);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    flex-grow: 1;
+}
+
+.admin-btn {
+    background-color: var(--admin-accent);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.admin-btn:hover {
+    background-color: var(--admin-accent-hover);
+}

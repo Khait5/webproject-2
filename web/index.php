@@ -17,6 +17,9 @@ Session::start();
         <div class="nav-links">
             <a href="modules/rankings/index.php">Rankings</a>
             <?php if (isset($_SESSION['account'])): ?>
+                <?php if (isset($_SESSION['accessLevel']) && $_SESSION['accessLevel'] > 0): ?>
+                    <a href="modules/admin/index.php" style="color: #e74c3c;">Admin CP</a>
+                <?php endif; ?>
                 <a href="modules/ucp/index.php">Control Panel</a>
                 <a href="modules/auth/logout.php">Logout</a>
             <?php else: ?>

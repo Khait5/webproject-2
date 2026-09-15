@@ -48,6 +48,9 @@ if ($conn) {
         <div class="nav-links">
             <a href="../../index.php">Home</a>
             <?php if (isset($_SESSION['account'])): ?>
+                <?php if (isset($_SESSION['accessLevel']) && $_SESSION['accessLevel'] > 0): ?>
+                    <a href="../admin/index.php" style="color: #e74c3c;">Admin CP</a>
+                <?php endif; ?>
                 <a href="../ucp/index.php">Control Panel</a>
                 <a href="../auth/logout.php">Logout</a>
             <?php else: ?>
