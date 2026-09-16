@@ -26,7 +26,7 @@ $conn = Database::getConnection();
 if ($conn) {
     $status['database'] = true;
     try {
-        $stmt = $conn->query("SELECT COUNT(*) as count FROM characters WHERE online = 1");
+        $stmt = $conn->query("SELECT COUNT(*) as count FROM characters WHERE online = 1 OR charId IN (SELECT charId FROM character_offline_play) OR charId IN (SELECT charId FROM character_offline_trade)");
         $row = $stmt->fetch();
         if ($row) {
             $status['online_players'] = (int)$row['count'];
