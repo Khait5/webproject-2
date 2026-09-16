@@ -36,46 +36,60 @@ if ($conn) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin CP - Dashboard</title>
-    <link rel="stylesheet" href="../../assets/css/admin.css">
+    <title>Dashboard - Admin CP</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body class="admin-theme">
-    <aside class="admin-sidebar">
-        <div class="admin-brand">L2 Admin CP</div>
-        <nav class="admin-nav">
-            <a href="index.php" class="active">Dashboard</a>
-            <a href="accounts.php">Accounts</a>
-            <a href="characters.php">Characters</a>
-            <a href="clans.php">Clans</a>
-            <a href="punishments.php">Punishments</a>
-            <a href="../../index.php" class="back-link">← Back to Site</a>
-        </nav>
-    </aside>
+    <div class="page-wrapper">
+        <!-- Left Sidebar: Admin Nav -->
+        <aside class="sidebar-left">
+            <div class="panel">
+                <h2 class="panel-title">Admin Menu</h2>
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="index.php" style="border-color: #e74c3c;">Dashboard</a></li>
+                        <li><a href="accounts.php">Manage Accounts</a></li>
+                        <li><a href="characters.php">Manage Characters</a></li>
+                        <li><a href="clans.php">Manage Clans</a></li>
+                        <li><a href="punishments.php">Punishments</a></li>
+                        <li><a href="../../index.php" style="color: var(--gold);">Back to Site</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
 
-    <main class="admin-content">
-        <header class="admin-header">
-            <h1>Dashboard Overview</h1>
-            <div>Logged in as: <strong><?php echo htmlspecialchars($_SESSION['account']); ?></strong></div>
-        </header>
+        <!-- Center Content -->
+        <main class="content-center">
+            <div class="panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 20px;">
+                    <h2 class="panel-title" style="margin-bottom: 0; border: none; padding: 0;">Dashboard Overview</h2>
+                    <div>Logged in as: <strong style="color: #e74c3c;"><?php echo htmlspecialchars($_SESSION['account']); ?></strong></div>
+                </div>
 
-        <div class="admin-stats-grid">
-            <div class="admin-stat-card">
-                <h3>Total Accounts</h3>
-                <div class="value"><?php echo number_format($stats['accounts']); ?></div>
+                <div style="display: flex; gap: 15px; justify-content: space-between;">
+                    <div style="flex: 1; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 4px; text-align: center; border: 1px solid var(--border-color);">
+                        <h3 style="margin-top: 0; color: #888; font-size: 14px;">Total Accounts</h3>
+                        <div style="font-size: 28px; font-weight: bold; color: var(--gold);"><?php echo number_format($stats['accounts']); ?></div>
+                    </div>
+                    <div style="flex: 1; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 4px; text-align: center; border: 1px solid var(--border-color);">
+                        <h3 style="margin-top: 0; color: #888; font-size: 14px;">Total Characters</h3>
+                        <div style="font-size: 28px; font-weight: bold; color: var(--gold);"><?php echo number_format($stats['characters']); ?></div>
+                    </div>
+                    <div style="flex: 1; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 4px; text-align: center; border: 1px solid #27ae60;">
+                        <h3 style="margin-top: 0; color: #888; font-size: 14px;">Players Online</h3>
+                        <div style="font-size: 28px; font-weight: bold; color: #27ae60;"><?php echo number_format($stats['online']); ?></div>
+                    </div>
+                    <div style="flex: 1; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 4px; text-align: center; border: 1px solid var(--border-color);">
+                        <h3 style="margin-top: 0; color: #888; font-size: 14px;">Total Clans</h3>
+                        <div style="font-size: 28px; font-weight: bold; color: var(--gold);"><?php echo number_format($stats['clans']); ?></div>
+                    </div>
+                </div>
             </div>
-            <div class="admin-stat-card">
-                <h3>Total Characters</h3>
-                <div class="value"><?php echo number_format($stats['characters']); ?></div>
-            </div>
-            <div class="admin-stat-card">
-                <h3>Players Online</h3>
-                <div class="value text-success"><?php echo number_format($stats['online']); ?></div>
-            </div>
-            <div class="admin-stat-card">
-                <h3>Total Clans</h3>
-                <div class="value"><?php echo number_format($stats['clans']); ?></div>
-            </div>
-        </div>
-    </main>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; <?php echo date('Y'); ?> ColombianAge Server. Admin Control Panel.</p>
+    </footer>
 </body>
 </html>

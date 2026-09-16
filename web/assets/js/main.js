@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const statusContainer = document.getElementById('status-container');
+    const statusContainer = document.getElementById('status-online-count');
 
     if (statusContainer) {
         updateServerStatus();
@@ -9,7 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function updateServerStatus() {
-    fetch('api/status.php')
+    // Attempt to determine correct API path based on current location
+    let apiPath = 'api/status.php';
+    if (window.location.pathname.includes('/modules/')) {
+        apiPath = '../../api/status.php';
+    }
+
+    fetch(apiPath)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -17,32 +23,16 @@ function updateServerStatus() {
             return response.json();
         })
         .then(data => {
-            updateStatusElement('status-login', data.login_server);
-            updateStatusElement('status-game', data.game_server);
-            updateStatusElement('status-db', data.database);
-
-            const onlineCounter = document.getElementById('status-online');
+            const onlineCounter = document.getElementById('status-online-count');
             if (onlineCounter) {
                 onlineCounter.textContent = data.online_players;
             }
         })
         .catch(error => {
             console.error('Error fetching server status:', error);
-            const indicators = ['status-login', 'status-game', 'status-db'];
-            indicators.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.innerHTML = '<span class="loading">Error</span>';
-            });
+            const onlineCounter = document.getElementById('status-online-count');
+            if (onlineCounter) {
+                onlineCounter.textContent = 'Error';
+            }
         });
-}
-
-function updateStatusElement(elementId, isOnline) {
-    const element = document.getElementById(elementId);
-    if (!element) return;
-
-    if (isOnline) {
-        element.innerHTML = '<span class="online">Online</span>';
-    } else {
-        element.innerHTML = '<span class="offline">Offline</span>';
-    }
 }

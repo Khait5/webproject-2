@@ -74,54 +74,68 @@ $csrf_token = Session::generateCsrfToken();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ColombianAge - Change Password</title>
+    <title>Change Password - ColombianAge</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
-<body class="dark-fantasy-theme">
-    <nav class="navbar">
-        <div class="nav-brand">ColombianAge</div>
-        <div class="nav-links">
-            <a href="../../index.php">Home</a>
-            <?php if (isset($_SESSION['accessLevel']) && $_SESSION['accessLevel'] > 0): ?>
-                <a href="../admin/index.php" style="color: #e74c3c;">Admin CP</a>
-            <?php endif; ?>
-            <a href="index.php">Dashboard</a>
-            <a href="../auth/logout.php">Logout</a>
-        </div>
-    </nav>
-
-    <div class="container">
-        <h1>Change Password</h1>
-
-        <?php if ($error): ?>
-            <div class="alert error"><?php echo htmlspecialchars($error); ?></div>
-        <?php endif; ?>
-
-        <?php if ($success): ?>
-            <div class="alert success"><?php echo htmlspecialchars($success); ?></div>
-        <?php endif; ?>
-
-        <form action="password.php" method="POST">
-            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
-
-            <div class="form-group">
-                <label for="current_password">Current Password</label>
-                <input type="password" id="current_password" name="current_password" required>
+<body>
+    <div class="page-wrapper">
+        <!-- Left Sidebar: UCP Menu -->
+        <aside class="sidebar-left">
+            <div class="panel">
+                <h2 class="panel-title">UCP Menu</h2>
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="index.php">Characters</a></li>
+                        <li><a href="password.php" style="border-color: var(--gold);">Change Password</a></li>
+                        <?php if (isset($_SESSION['accessLevel']) && $_SESSION['accessLevel'] > 0): ?>
+                            <li><a href="../admin/index.php" style="color: #e74c3c;">Admin CP</a></li>
+                        <?php endif; ?>
+                        <li><a href="../../index.php">Back to Site</a></li>
+                    </ul>
+                </nav>
             </div>
+        </aside>
 
-            <div class="form-group">
-                <label for="new_password">New Password</label>
-                <input type="password" id="new_password" name="new_password" required minlength="6" maxlength="45">
+        <!-- Center Content -->
+        <main class="content-center">
+            <div class="panel">
+                <h2 class="panel-title">Change Password</h2>
+
+                <?php if ($error): ?>
+                    <div class="alert alert-error"><?php echo htmlspecialchars($error); ?></div>
+                <?php endif; ?>
+
+                <?php if ($success): ?>
+                    <div class="alert alert-success"><?php echo htmlspecialchars($success); ?></div>
+                <?php endif; ?>
+
+                <form action="password.php" method="POST" class="auth-form" style="max-width: 400px; margin: 0 auto; gap: 15px;">
+                    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
+
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label for="current_password" style="color: var(--gold);">Current Password</label>
+                        <input type="password" id="current_password" name="current_password" required>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label for="new_password" style="color: var(--gold);">New Password</label>
+                        <input type="password" id="new_password" name="new_password" required minlength="6" maxlength="45">
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label for="confirm_password" style="color: var(--gold);">Confirm New Password</label>
+                        <input type="password" id="confirm_password" name="confirm_password" required minlength="6" maxlength="45">
+                    </div>
+
+                    <button type="submit" class="btn" style="margin-top: 10px;">Update Password</button>
+                    <a href="index.php" style="text-align: center; display: block; margin-top: 10px; font-size: 12px;">Cancel</a>
+                </form>
             </div>
-
-            <div class="form-group">
-                <label for="confirm_password">Confirm New Password</label>
-                <input type="password" id="confirm_password" name="confirm_password" required minlength="6" maxlength="45">
-            </div>
-
-            <button type="submit" class="btn">Update Password</button>
-            <a href="index.php" class="btn-link">Cancel</a>
-        </form>
+        </main>
     </div>
+
+    <footer>
+        <p>&copy; <?php echo date('Y'); ?> ColombianAge Server. Powered by L2J Mobius.</p>
+    </footer>
 </body>
 </html>
