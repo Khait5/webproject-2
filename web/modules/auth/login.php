@@ -74,30 +74,54 @@ $csrf_token = Session::generateCsrfToken();
     <title>ColombianAge - Login</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
-<body class="dark-fantasy-theme">
-    <div class="container">
-        <h1>Login</h1>
-
-        <?php if ($error): ?>
-            <div class="alert error"><?php echo htmlspecialchars($error); ?></div>
-        <?php endif; ?>
-
-        <form action="login.php" method="POST">
-            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
-
-            <div class="form-group">
-                <label for="login">Account Name</label>
-                <input type="text" id="login" name="login" required>
+<body>
+    <div class="page-wrapper">
+        <!-- Left Sidebar: Navigation -->
+        <aside class="sidebar-left">
+            <div class="panel">
+                <h2 class="panel-title">Main Menu</h2>
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="../../index.php">Home</a></li>
+                        <li><a href="register.php">Register</a></li>
+                        <li><a href="../../downloads.php">Downloads</a></li>
+                        <li><a href="../rankings/index.php">Rankings</a></li>
+                    </ul>
+                </nav>
             </div>
+        </aside>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+        <!-- Center Content -->
+        <main class="content-center">
+            <div class="panel">
+                <h2 class="panel-title">Login</h2>
+
+                <?php if ($error): ?>
+                    <div class="alert alert-error"><?php echo htmlspecialchars($error); ?></div>
+                <?php endif; ?>
+
+                <form action="login.php" method="POST" class="auth-form" style="max-width: 400px; margin: 0 auto; gap: 15px;">
+                    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
+
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label for="login" style="color: var(--gold);">Account Name</label>
+                        <input type="text" id="login" name="login" required>
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <label for="password" style="color: var(--gold);">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+
+                    <button type="submit" class="btn" style="margin-top: 10px;">Login</button>
+                    <a href="../../index.php" style="text-align: center; display: block; margin-top: 10px; font-size: 12px;">Back to Home</a>
+                </form>
             </div>
-
-            <button type="submit" class="btn">Login</button>
-            <a href="../../index.php" class="btn-link">Back to Home</a>
-        </form>
+        </main>
     </div>
+
+    <footer>
+        <p>&copy; <?php echo date('Y'); ?> ColombianAge Server. Powered by L2J Mobius.</p>
+    </footer>
 </body>
 </html>

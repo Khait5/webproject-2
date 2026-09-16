@@ -8,7 +8,7 @@ Session::start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ColombianAge - L2J Mobius Interlude</title>
+    <title>Downloads - ColombianAge</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -31,25 +31,25 @@ Session::start();
         <!-- Center Content -->
         <main class="content-center">
             <div class="panel">
-                <h2 class="panel-title">Welcome to ColombianAge</h2>
-                <div style="text-align: center; padding: 20px;">
-                    <p style="font-size: 16px; margin-bottom: 20px;">The ultimate Lineage II Interlude experience.</p>
-                    <p>Join us in epic battles, siege castles, and become a legend in our living world.</p>
-                    <?php if (!isset($_SESSION['account'])): ?>
-                        <a href="modules/auth/register.php" class="btn" style="display:inline-block; margin-top:20px;">Join Now</a>
-                    <?php endif; ?>
-                </div>
-            </div>
+                <h2 class="panel-title">Downloads</h2>
 
-            <div class="panel">
-                <h2 class="panel-title">Latest News</h2>
-                <p>Welcome to the launch of ColombianAge! Get ready for an authentic Interlude experience.</p>
-                <p>Features include:</p>
-                <ul>
-                    <li>Stable L2J Mobius Interlude core</li>
-                    <li>No Pay-to-Win customs</li>
-                    <li>Active community and support</li>
-                </ul>
+                <div style="background: rgba(255,255,255,0.05); padding: 20px; border: 1px solid var(--border-color); border-radius: 4px; margin-bottom: 20px;">
+                    <h3 style="color: var(--gold); margin-top: 0;">System Patch v1.0</h3>
+                    <p style="margin-bottom: 15px;">Download our custom system patch to connect to the ColombianAge server. This patch includes all necessary files, custom textures, and connection settings.</p>
+                    <p><strong>Size:</strong> 45 MB</p>
+                    <p><strong>Date:</strong> <?php echo date('Y-m-d'); ?></p>
+
+                    <a href="#" class="btn" style="display: inline-block; margin-top: 10px;">Download Patch (Mega)</a>
+                    <a href="#" class="btn btn-secondary" style="display: inline-block; margin-top: 10px; margin-left: 10px;">Download Patch (MediaFire)</a>
+                </div>
+
+                <div style="background: rgba(255,255,255,0.05); padding: 20px; border: 1px solid var(--border-color); border-radius: 4px;">
+                    <h3 style="color: var(--gold); margin-top: 0;">Lineage II Interlude Client</h3>
+                    <p style="margin-bottom: 15px;">If you don't have the original Lineage II Interlude client, you can download a clean version here.</p>
+                    <p><strong>Size:</strong> 3.2 GB</p>
+
+                    <a href="#" class="btn" style="display: inline-block; margin-top: 10px;">Download Client</a>
+                </div>
             </div>
         </main>
 
@@ -71,22 +71,10 @@ Session::start();
                         <p>Welcome, <strong><?php echo htmlspecialchars($_SESSION['account']); ?></strong>!</p>
                         <div class="auth-form" style="margin-top:15px;">
                             <a href="modules/ucp/index.php" class="btn btn-secondary">User Panel</a>
-                            <?php if (isset($_SESSION['accessLevel']) && $_SESSION['accessLevel'] > 0): ?>
-                                <a href="modules/admin/index.php" class="btn" style="background:#e74c3c;">Admin CP</a>
-                            <?php endif; ?>
                             <a href="modules/auth/logout.php" class="btn">Logout</a>
                         </div>
                     </div>
                 <?php endif; ?>
-            </div>
-
-            <div class="panel">
-                <h2 class="panel-title">Server Status</h2>
-                <div class="server-status">
-                    <p><span class="status-indicator"></span><span class="status-online">Online</span></p>
-                    <div id="status-online-count" style="font-size:24px; color:var(--gold); margin:10px 0;">Loading...</div>
-                    <p>Players Online</p>
-                </div>
             </div>
         </aside>
     </div>
@@ -94,7 +82,5 @@ Session::start();
     <footer>
         <p>&copy; <?php echo date('Y'); ?> ColombianAge Server. Powered by L2J Mobius.</p>
     </footer>
-
-    <script src="assets/js/main.js"></script>
 </body>
 </html>
