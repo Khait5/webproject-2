@@ -6,7 +6,7 @@
 }
 
 body {
-    background: #000 url('../img/psd/Слой\ 101.png') no-repeat center top;
+    background: #000 url('../img/psd/bg_main.png') no-repeat center top;
     color: #aebed0;
     font-family: 'Tahoma', sans-serif;
     font-size: 12px;
@@ -46,7 +46,7 @@ header {
 }
 
 .top-nav {
-    background: url('../img/psd/Слой\ 12\ копия.png') no-repeat center center;
+    background: url('../img/psd/nav_bg.png') no-repeat center center;
     height: 60px;
     display: flex;
     justify-content: center;
@@ -94,7 +94,7 @@ header {
 }
 
 .panel-header {
-    background: url('../img/psd/Слой\ 14\ копия.png') no-repeat center top;
+    background: url('../img/psd/panel_bg.png') no-repeat center top;
     height: 50px;
     text-align: center;
     color: #fff;
@@ -113,7 +113,7 @@ header {
 /* Buttons */
 .btn, .btn-secondary {
     display: inline-block;
-    background: url('../img/psd/2\ копия_1.png') no-repeat center;
+    background: url('../img/psd/button_bg.png') no-repeat center;
     color: #fff;
     width: 100%;
     padding: 12px 0;

@@ -1,38 +1,35 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
+header('Content-Type: application/json');
 
 use Web\Config\Database;
 
-header('Content-Type: application/json');
-
-function checkServerStatus($host, $port, $timeout = 1) {
-    $socket = @fsockopen($host, $port, $errno, $errstr, $timeout);
-    if ($socket) {
-        fclose($socket);
-        return true;
-    }
-    return false;
-}
-
 $status = [
-    'login_server' => checkServerStatus('127.0.0.1', 2106),
-    'game_server' => checkServerStatus('127.0.0.1', 7777),
-    'database' => false,
+    'online' => false,
     'online_players' => 0
 ];
 
 $conn = Database::getConnection();
-
 if ($conn) {
-    $status['database'] = true;
     try {
-        $stmt = $conn->query("SELECT COUNT(*) as count FROM characters WHERE online = 1");
-        $row = $stmt->fetch();
-        if ($row) {
-            $status['online_players'] = (int)$row['count'];
-        }
+        $stmt = $conn->query("SELECT COUNT(*) FROM characters WHERE online = 1");
+        $count = $stmt->fetchColumn();
+
+        // Count offline shops/bots if they exist (Living World requirements)
+        try {
+            $offlinePlayStmt = $conn->query("SELECT COUNT(*) FROM character_offline_play");
+            $count += $offlinePlayStmt->fetchColumn();
+        } catch (\Exception $e) {}
+
+        try {
+            $offlineTradeStmt = $conn->query("SELECT COUNT(*) FROM character_offline_trade");
+            $count += $offlineTradeStmt->fetchColumn();
+        } catch (\Exception $e) {}
+
+        $status['online'] = true;
+        $status['online_players'] = $count;
     } catch (\PDOException $e) {
-        // Log error in a real app, silently fail for API
+        $status['online'] = false;
     }
 }
 

@@ -78,7 +78,7 @@ $csrf_token = Session::generateCsrfToken();
     <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
-    <div class="page-wrapper">
+    <div class="main-content">
         <!-- Left Sidebar: UCP Menu -->
         <aside class="sidebar-left">
             <div class="panel">

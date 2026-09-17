@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function updateServerStatus() {
     // Use absolute path for API to ensure it works from any directory depth
-    const apiPath = '/api/status.php';
+    const apiPath = document.querySelector('script[src*="main.js"]').getAttribute('src').replace('assets/js/main.js', 'api/status.php');
 
     fetch(apiPath)
         .then(response => {

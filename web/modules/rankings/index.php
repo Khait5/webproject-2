@@ -43,7 +43,28 @@ if ($conn) {
     <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
-    <div class="page-wrapper">
+    <div class="wrapper">
+        <header>
+            <div id="google_translate_element" style="position: absolute; right: 20px; top: 10px;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'es,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+            <div class="logo">
+                <a href="../../index.php"><img src="../../assets/img/psd/Ancardia.png" alt="Ancardia Logo"></a>
+            </div>
+            <nav class="top-nav">
+                <a href="../../index.php">Home</a>
+                <a href="#">Forum</a>
+                <?php if (!isset($_SESSION['account'])): ?><a href="../../modules/auth/register.php">Register</a><?php endif; ?>
+                <a href="#">Donate</a>
+                <a href="../../downloads.php">Files</a>
+                <a href="../../modules/rankings/index.php">Rankings</a>
+                <a href="#">About</a>
+            </nav>
+        </header>
         <!-- Left Sidebar: Navigation -->
         <aside class="sidebar-left">
             <div class="panel">
@@ -51,7 +72,7 @@ if ($conn) {
                 <nav class="nav-menu">
                     <ul>
                         <li><a href="../../index.php">Home</a></li>
-                        <li><a href="../auth/register.php">Register</a></li>
+                        <li><?php if (!isset($_SESSION['account'])): ?><a href="../auth/register.php">Register</a><?php endif; ?></li>
                         <li><a href="../../downloads.php">Downloads</a></li>
                         <li><a href="index.php" style="border-color: var(--gold);">Rankings</a></li>
                     </ul>
@@ -60,7 +81,33 @@ if ($conn) {
         </aside>
 
         <!-- Center Content -->
-        <main class="content-center">
+        <div class="main-content">
+            <!-- Left Sidebar -->
+            <aside class="sidebar-left">
+                <div class="panel">
+                    <div class="panel-header">Navigation</div>
+                    <nav class="nav-menu">
+                        <ul>
+                            <li><a href="../../index.php">Home</a></li>
+                            <li><?php if (!isset($_SESSION['account'])): ?><a href="../../modules/auth/register.php">Register</a><?php endif; ?></li>
+                            <li><a href="../../downloads.php">Files (Client)</a></li>
+                            <li><a href="../../modules/rankings/index.php">Rankings</a></li>
+                        </ul>
+                    </nav>
+                    <div class="panel-footer"></div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">Social Media</div>
+                    <div style="text-align: center; padding: 10px;">
+                        <a href="#"><img src="../../assets/img/psd/Vkontakte.png" alt="VK"></a>
+                        <a href="#"><img src="../../assets/img/psd/Facebook.png" alt="Facebook"></a>
+                        <a href="#"><img src="../../assets/img/psd/Youtube.png" alt="YouTube"></a>
+                    </div>
+                    <div class="panel-footer"></div>
+                </div>
+            </aside>
+<main class="content-center">
             <div class="panel">
                 <h2 class="panel-title">Server Rankings</h2>
 
@@ -169,7 +216,7 @@ if ($conn) {
                 <?php if (!isset($_SESSION['account'])): ?>
                     <form action="../auth/login.php" method="POST" class="auth-form">
                         <input type="text" name="login" placeholder="Username" required>
-                        <input type="password" name="password" placeholder="Password" required>
+                        <input type="password" name="password" placeholder="Password" autocomplete="current-password" required>
                         <button type="submit" class="btn">Login</button>
                     </form>
                     <div style="text-align:center; margin-top:10px;">
@@ -194,5 +241,6 @@ if ($conn) {
     <footer>
         <p>&copy; <?php echo date('Y'); ?> ColombianAge Server. Powered by L2J Mobius.</p>
     </footer>
+    <script src="../../assets/js/main.js"></script>
 </body>
 </html>
