@@ -9,11 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function updateServerStatus() {
-    // Attempt to determine correct API path based on current location
-    let apiPath = 'api/status.php';
-    if (window.location.pathname.includes('/modules/')) {
-        apiPath = '../../api/status.php';
-    }
+    // Use absolute path for API to ensure it works from any directory depth
+    const apiPath = '/api/status.php';
 
     fetch(apiPath)
         .then(response => {
