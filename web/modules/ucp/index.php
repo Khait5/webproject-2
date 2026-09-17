@@ -35,7 +35,7 @@ if ($conn) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Control Panel - ColombianAge</title>
+    <title>User Control Panel - Ancardia</title>
     <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
@@ -53,7 +53,7 @@ if ($conn) {
             </div>
             <nav class="top-nav">
                 <a href="../../index.php">Home</a>
-                <a href="#">Forum</a>
+                <a href="../../modules/forum/index.php">Forum</a>
                 <?php if (!isset($_SESSION['account'])): ?><a href="../../modules/auth/register.php">Register</a><?php endif; ?>
                 <a href="#">Donate</a>
                 <a href="../../downloads.php">Files</a>
@@ -61,24 +61,26 @@ if ($conn) {
                 <a href="#">About</a>
             </nav>
         </header>
-        <!-- Left Sidebar: UCP Menu -->
-        <!-- Center Content -->
+
         <div class="main-content">
             <!-- Left Sidebar -->
             <aside class="sidebar-left">
                 <div class="panel">
                     <div class="panel-header">UCP Navigation</div>
                     <nav class="nav-menu">
-                    <ul>
-                        <li><a href="index.php" style="border-color: var(--gold);">Characters</a></li>
-                        <li><a href="password.php">Change Password</a></li>
-                        <?php if (isset($_SESSION['accessLevel']) && $_SESSION['accessLevel'] > 0): ?>
-                            <li><a href="../admin/index.php" style="color: #e74c3c;">Admin CP</a></li>
-                        <?php endif; ?>
-                        <li><a href="../../index.php">Back to Site</a></li>
-                    </ul>
+                        <ul>
+                            <li><a href="index.php" style="border-color: var(--gold);">Characters</a></li>
+                            <li><a href="password.php">Change Password</a></li>
+                            <?php if (isset($_SESSION['accessLevel']) && $_SESSION['accessLevel'] > 0): ?>
+                                <li><a href="../admin/index.php" style="color: #e74c3c;">Admin CP</a></li>
+                            <?php endif; ?>
+                            <li><a href="../../index.php">Back to Site</a></li>
+                        </ul>
                     </nav>
+                    <div class="panel-footer"></div>
                 </div>
+                <div class="panel">
+                    <div class="panel-header">Navigation</div>
                     <nav class="nav-menu">
                         <ul>
                             <li><a href="../../index.php">Home</a></li>
@@ -100,8 +102,10 @@ if ($conn) {
                     <div class="panel-footer"></div>
                 </div>
             </aside>
-<main class="content-center">
-            <div class="panel">
+
+            <!-- Center Content -->
+            <main class="content-center">
+                <div class="panel">
                 <h2 class="panel-title">Welcome, <?php echo htmlspecialchars($account); ?></h2>
 
                 <?php if ($error): ?>
@@ -163,7 +167,8 @@ if ($conn) {
                     </table>
                 </div>
             </div>
-        </main>
+            </main>
+
             <!-- Right Sidebar -->
             <aside class="sidebar-right">
                 <div class="panel">
@@ -171,8 +176,8 @@ if ($conn) {
                     <div style="padding: 10px;">
                         <?php if (!isset($_SESSION['account'])): ?>
                             <form action="../../modules/auth/login.php" method="POST" class="auth-form">
-                                <input type="text" name="login" placeholder="Login" required>
-                                <input type="password" name="password" placeholder="Password" required>
+                                <input type="text" name="login" placeholder="Login" autocomplete="username" required>
+                                <input type="password" name="password" placeholder="Password" autocomplete="current-password" required>
                                 <button type="submit" class="btn" style="margin-top:10px;">Login</button>
                             </form>
                             <div style="text-align:center; margin-top:10px;">
@@ -207,9 +212,11 @@ if ($conn) {
             </aside>
         </div>
 
-    <footer>
-        <p>&copy; <?php echo date('Y'); ?> ColombianAge Server. Powered by L2J Mobius.</p>
-    </footer>
+        <footer>
+            <p>&copy; <?php echo date('Y'); ?> Ancardia Server. All rights reserved.</p>
+        </footer>
+    </div>
+
     <script src="../../assets/js/main.js"></script>
 </body>
 </html>
