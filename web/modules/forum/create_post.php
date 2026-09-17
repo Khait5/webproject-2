@@ -6,6 +6,7 @@ use Web\Config\Database;
 use Web\Core\Session;
 
 Session::start();
+$csrf_token = Session::generateCsrfToken();
 
 if (!isset($_SESSION['account'])) {
     header("Location: ../auth/login.php");

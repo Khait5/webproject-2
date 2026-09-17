@@ -162,6 +162,7 @@ $csrf_token = Session::generateCsrfToken();
                     <div style="padding: 10px;">
                         <?php if (!isset($_SESSION['account'])): ?>
                             <form action="../../modules/auth/login.php" method="POST" class="auth-form">
+                                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
                                 <input type="text" name="login" placeholder="Login" required>
                                 <input type="password" name="password" placeholder="Password" required>
                                 <button type="submit" class="btn" style="margin-top:10px;">Login</button>
