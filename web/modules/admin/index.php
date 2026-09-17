@@ -42,17 +42,24 @@ if ($conn) {
 <body>
     <div class="wrapper">
         <header>
+            <div id="google_translate_element" style="position: absolute; right: 20px; top: 10px;"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'es,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
             <div class="logo">
                 <a href="../../index.php"><img src="../../assets/img/psd/Ancardia.png" alt="Ancardia Logo"></a>
             </div>
             <nav class="top-nav">
                 <a href="../../index.php">ГЛАВНАЯ</a>
                 <a href="#">ФОРУМ</a>
-                <a href="../auth/register.php">РЕГИСТРАЦИЯ</a>
+                <a href="../auth/register.php">REGISTER</a>
                 <a href="#">ПОЖЕРТВОВАНИЯ</a>
-                <a href="../../downloads.php">ФАЙЛЫ</a>
-                <a href="../rankings/index.php">СТАТИСТИКА</a>
-                <a href="#">О ПРОЕКТЕ</a>
+                <a href="../../downloads.php">FILES</a>
+                <a href="../rankings/index.php">RANKINGS</a>
+                <a href="#">ABOUT</a>
             </nav>
         </header>
 
@@ -60,11 +67,11 @@ if ($conn) {
             <!-- Left Sidebar -->
             <aside class="sidebar-left">
                 <div class="panel">
-                    <div class="panel-header">АДМИН МЕНЮ</div>
+                    <div class="panel-header">ADMIN MENU</div>
                     <nav class="nav-menu">
                         <ul>
                             <li><a href="index.php" style="color: var(--text-blue);">Dashboard</a></li>
-                            <li><a href="../../index.php">Главная сайта</a></li>
+                            <li><a href="../../index.php">Site Home</a></li>
                         </ul>
                     </nav>
                     <div class="panel-footer"></div>
@@ -78,7 +85,7 @@ if ($conn) {
 
                     <div style="padding: 20px;">
                         <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-bottom: 20px; color: #fff;">
-                            <div>Вы вошли как: <strong style="color: var(--text-blue);"><?php echo htmlspecialchars($_SESSION['account']); ?></strong></div>
+                            <div>Logged in as: <strong style="color: var(--text-blue);"><?php echo htmlspecialchars($_SESSION['account']); ?></strong></div>
                         </div>
 
                         <div style="display: flex; gap: 15px; justify-content: space-between; flex-wrap: wrap;">
@@ -106,11 +113,11 @@ if ($conn) {
             <!-- Right Sidebar -->
             <aside class="sidebar-right">
                 <div class="panel">
-                    <div class="panel-header">СТАТУС СЕРВЕРОВ</div>
+                    <div class="panel-header">SERVER STATUS</div>
                     <div class="server-status" style="padding: 20px 15px; text-align: center;">
                         <p style="color: var(--text-green); font-weight: bold; margin-bottom: 10px;">Online</p>
                         <div id="status-online-count" style="font-size: 28px; color: #fff; font-weight: bold; margin-bottom: 10px; text-shadow: 0 0 5px rgba(255,255,255,0.5);">0</div>
-                        <p style="color: var(--text-gray); font-size: 12px;">Игроков онлайн</p>
+                        <p style="color: var(--text-gray); font-size: 12px;">Players Online</p>
                     </div>
                     <div class="panel-footer"></div>
                 </div>
@@ -118,7 +125,7 @@ if ($conn) {
         </div>
 
         <footer>
-            <p>&copy; <?php echo date('Y'); ?> Ancardia Server. Все права защищены.</p>
+            <p>&copy; <?php echo date('Y'); ?> Ancardia Server. All rights reserved.</p>
         </footer>
     </div>
 

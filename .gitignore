@@ -1,3 +1,30 @@
-assets_psd/
-web/assets/img/psd/
+# Dependency directories
 node_modules/
+vendor/
+.npm/
+
+# Build and Output
+target/
+build/
+dist/
+__pycache__/
+*.webm
+
+# Temporary files
+*.log
+*.tmp
+.cache/
+.config/
+
+# Ignore everything in psd directory
+web/assets/img/psd/*
+
+# Except these exact ones needed for layout
+!web/assets/img/psd/Ancardia.png
+!web/assets/img/psd/Facebook.png
+!web/assets/img/psd/Vkontakte.png
+!web/assets/img/psd/Youtube.png
+!web/assets/img/psd/bg_main.png
+!web/assets/img/psd/button_bg.png
+!web/assets/img/psd/nav_bg.png
+!web/assets/img/psd/panel_bg.png
