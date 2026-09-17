@@ -6,6 +6,7 @@ use Web\Config\Database;
 use Web\Core\Session;
 
 Session::start();
+$csrf_token = Session::generateCsrfToken();
 
 $conn = Database::getConnection();
 $categoryId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -148,6 +149,7 @@ if (isset($_SESSION['account'])) {
                     <div style="padding: 10px;">
                         <?php if (!isset($_SESSION['account'])): ?>
                             <form action="../../modules/auth/login.php" method="POST" class="auth-form">
+                                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
                                 <input type="text" name="login" placeholder="Login" autocomplete="username" required>
                                 <input type="password" name="password" placeholder="Password" autocomplete="current-password" required>
                                 <button type="submit" class="btn" style="margin-top:10px;">Login</button>

@@ -6,6 +6,7 @@ use Web\Config\Database;
 use Web\Core\Session;
 
 Session::start();
+$csrf_token = Session::generateCsrfToken();
 
 $topPvp = [];
 $topPk = [];
@@ -215,7 +216,8 @@ if ($conn) {
                 <h2 class="panel-title">Account</h2>
                 <?php if (!isset($_SESSION['account'])): ?>
                     <form action="../auth/login.php" method="POST" class="auth-form">
-                        <input type="text" name="login" placeholder="Username" required>
+                        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token); ?>">
+                                <input type="text" name="login" placeholder="Username" required>
                         <input type="password" name="password" placeholder="Password" autocomplete="current-password" required>
                         <button type="submit" class="btn">Login</button>
                     </form>
