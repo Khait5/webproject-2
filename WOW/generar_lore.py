@@ -1,10 +1,11 @@
 """
 Script de utilidad para generar la totalidad de las misiones del juego (3.3.5a)
-respetando la Regla de Oro mediante IA y el esquema explícito proporcionado.
+respetando la Regla de Oro mediante IA.
 
 Como es imposible generar ~10,000 misiones a mano respetando los objetivos
 mecánicos en un solo prompt, este script demuestra cómo podrías conectar la
-base de datos a una API de LLM para procesar cada misión automáticamente.
+base de datos de AzerothCore a una API de LLM para procesar cada misión
+automáticamente.
 
 Requisitos: mysql-connector-python, openai
 """
@@ -49,15 +50,20 @@ def main():
         sys.exit(1)
 
     query = """
-    SELECT ID, locale, Title, Details, Objectives, OfferReward, RequestItems
-    FROM quest_template_locale
-    WHERE locale IN ('esES', 'esMX')
+    SELECT
+        q.ID, q.locale, q.Title, q.Details, q.Objectives, q.ObjectiveText1,
+        o.RewardText,
+        r.CompletionText
+    FROM quest_template_locale q
+    LEFT JOIN quest_offer_reward_locale o ON q.ID = o.ID AND q.locale = o.locale
+    LEFT JOIN quest_request_items_locale r ON q.ID = r.ID AND q.locale = r.locale
+    WHERE q.locale IN ('esES', 'esMX')
     """
 
     if args.quest_ids:
         ids = [str(int(q_id.strip())) for q_id in args.quest_ids.split(",") if q_id.strip().isdigit()]
         if ids:
-            query += f" AND ID IN ({','.join(ids)})"
+            query += f" AND q.ID IN ({','.join(ids)})"
         else:
             print("No valid quest IDs provided.")
             sys.exit(1)
@@ -81,7 +87,7 @@ def main():
     Si la misión original pide matar 10 lobos, tu nueva historia DEBE pedir matar 10 'Lobos del Aburrimiento'.
 
     Devuelve estrictamente un JSON válido con las siguientes claves:
-    'Title', 'Details', 'Objectives', 'OfferReward', 'RequestItems'.
+    'Title', 'Details', 'Objectives', 'ObjectiveText1', 'RewardText', 'CompletionText'.
     No devuelvas NADA MÁS que el JSON.
     """
 
@@ -93,14 +99,14 @@ def main():
     for i, quest in enumerate(quests):
         print(f"Procesando misión {i+1}/{len(quests)} (ID: {quest['ID']})")
 
-        # Protect against NULLs coming from DB
         orig_title = quest.get('Title') or ""
         orig_details = quest.get('Details') or ""
         orig_objectives = quest.get('Objectives') or ""
-        orig_offer = quest.get('OfferReward') or ""
-        orig_request = quest.get('RequestItems') or ""
+        orig_obj1 = quest.get('ObjectiveText1') or ""
+        orig_offer = quest.get('RewardText') or ""
+        orig_request = quest.get('CompletionText') or ""
 
-        user_prompt = f"Misión Original:\nTitle: {orig_title}\nDetails: {orig_details}\nObjectives: {orig_objectives}\nOfferReward: {orig_offer}\nRequestItems: {orig_request}\n"
+        user_prompt = f"Misión Original:\nTitle: {orig_title}\nDetails: {orig_details}\nObjectives: {orig_objectives}\nObjectiveText1: {orig_obj1}\nRewardText: {orig_offer}\nCompletionText: {orig_request}\n"
 
         try:
             response = client.chat.completions.create(
@@ -120,19 +126,24 @@ def main():
 
             new_quest = json.loads(result_text)
 
-            # Protect against nulls coming from JSON
             title = (new_quest.get('Title') or "").replace("'", "''")
             details = (new_quest.get('Details') or "").replace("'", "''")
             objectives = (new_quest.get('Objectives') or "").replace("'", "''")
-            offer = (new_quest.get('OfferReward') or "").replace("'", "''")
-            request = (new_quest.get('RequestItems') or "").replace("'", "''")
+            obj1 = (new_quest.get('ObjectiveText1') or "").replace("'", "''")
+            reward = (new_quest.get('RewardText') or "").replace("'", "''")
+            completion = (new_quest.get('CompletionText') or "").replace("'", "''")
 
-            sql_q = f"UPDATE quest_template_locale SET Title = '{title}', Details = '{details}', Objectives = '{objectives}', OfferReward = '{offer}', RequestItems = '{request}' WHERE ID = {quest['ID']} AND locale = '{quest['locale']}';\n"
+            # Generamos las tres consultas separadas
+            sql_q = f"UPDATE quest_template_locale SET Title = '{title}', Details = '{details}', Objectives = '{objectives}', ObjectiveText1 = '{obj1}' WHERE ID = {quest['ID']} AND locale = '{quest['locale']}';\n"
+            sql_o = f"UPDATE quest_offer_reward_locale SET RewardText = '{reward}' WHERE ID = {quest['ID']} AND locale = '{quest['locale']}';\n"
+            sql_r = f"UPDATE quest_request_items_locale SET CompletionText = '{completion}' WHERE ID = {quest['ID']} AND locale = '{quest['locale']}';\n"
+
+            full_sql = f"-- Misión ID {quest['ID']}\n{sql_q}{sql_o}{sql_r}\n"
 
             if quest['locale'] == 'esES':
-                file_esES.write(sql_q)
+                file_esES.write(full_sql)
             else:
-                file_esMX.write(sql_q)
+                file_esMX.write(full_sql)
 
         except Exception as e:
             print(f"Error procesando misión ID {quest['ID']}: {e}")
