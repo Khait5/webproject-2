@@ -9,7 +9,7 @@
 
 function check() {
 	foreach(func_get_args() as $args) {
-		if((@count($args)>0 and !@empty($args) and @isset($args)) || $args=='0') {
+		if((is_array($args) && count($args) > 0) || (!is_array($args) && $args !== null && $args !== '') || $args === '0' || $args === 0) {
 		} else {
 			return;
 		}
@@ -75,11 +75,11 @@ function config($cfg, $return=true) {
 }
 
 function isLoggedIn() {
-	if(!check($_SESSION['valid'])) return;
+	if(!isset($_SESSION['valid']) || !check($_SESSION['valid'])) return;
 	if($_SESSION['valid'] != true) return;
-	if(!check($_SESSION['userid'])) return;
-	if(!check($_SESSION['username'])) return;
-	if(!check($_SESSION['email'])) return;
+	if(!isset($_SESSION['userid']) || !check($_SESSION['userid'])) return;
+	if(!isset($_SESSION['username']) || !check($_SESSION['username'])) return;
+	if(!isset($_SESSION['email']) || !check($_SESSION['email'])) return;
 	return true;
 }
 

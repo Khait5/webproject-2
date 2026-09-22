@@ -56,7 +56,7 @@
 			</ul>
 			</div>
 		</div>
-		<?php Handler::loadModule($_GET['request']); ?>
+		<?php Handler::loadModule(isset($_GET['request']) ? $_GET['request'] : ''); ?>
 		<div class="main-footer">
 			<div class="row">
 				<div class="col-xs-4 text-right">

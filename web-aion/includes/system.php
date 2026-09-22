@@ -126,7 +126,7 @@ if(!@include_once(__PATH_LIBRARIES__ . 'lib.referrals.php')) throw new Exception
 if(!@include_once(__PATH_LIBRARIES__ . 'lib.profiles.legion.php')) throw new Exception('Could not load library [profiles.legion].');
 
 # check http referer (VOTE SYSTEM)
-if($_SESSION['check_referer'] == true) {
+if(isset($_SESSION['check_referer']) && $_SESSION['check_referer'] == true) {
 	try {
 		if(!isLoggedIn()) throw new Exception('Not logged in.');
 		voteCheckReferer();

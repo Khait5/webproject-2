@@ -41,7 +41,7 @@ class Handler {
 	public static function loadModule($request) {
 		$db = self::loadDB();
 		
-		$request = explode("/", $request);
+		$request = explode("/", $request ?? '');
 		$request = array_filter($request); // remove empty values
 		$_GET['module'] = (@check($request[0]) ? $request[0] : NULL);
 		$_GET['submodule'] = "";
@@ -88,7 +88,7 @@ class Handler {
 			if(check($_GET['module']) && !$topModuleData) {
 				$_GET['module'] = "404";
 			} else {
-				if($topModuleData['access'] == 2) {
+				if(is_array($topModuleData) && array_key_exists('access', $topModuleData) && $topModuleData['access'] == 2) {
 					# check if logged in
 					if(!isLoggedIn()) redirect('login/');
 				}
@@ -196,7 +196,7 @@ class Handler {
 	}
 	
 	private static function cleanModuleRequest($input) {
-		return preg_replace("/[^a-zA-Z0-9\s\/]/", "", $input);
+		return preg_replace("/[^a-zA-Z0-9\s\/]/", "", $input ?? '');
 	}
 	
 	public static function loadDB($database="") {
