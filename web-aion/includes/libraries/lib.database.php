@@ -10,6 +10,7 @@
 
 class database {
 	
+	public $db;
 	public $offline;
 	public $error;
 	public $errorMessage;
@@ -17,7 +18,7 @@ class database {
 	function __construct($host="localhost", $user="root", $passwd="", $dbname="", $port="3306") {
 		if(!check($dbname)) throw new Exception("Invalid Database Name");
 		try {
-			$this->db = new PDO("mysql:host=$host;dbname=$dbname;port=$port", $user, $passwd, array(PDO::ATTR_TIMEOUT => 30, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'UTF8'"));
+			$this->db = new PDO("mysql:host=$host;dbname=$dbname;port=$port", $user, $passwd, array(PDO::ATTR_TIMEOUT => 30, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, 1002 => "SET NAMES 'UTF8'"));
 		} catch(PDOException $e) {
 			$this->offline = true;
 			$this->errorMessage = "[PDO] " . $e->getMessage();

@@ -9,7 +9,7 @@
 
 function check() {
 	foreach(func_get_args() as $args) {
-		if((@count($args)>0 and !@empty($args) and @isset($args)) || $args=='0') {
+		if((is_array($args) && count($args) > 0) || (!is_array($args) && $args !== null && $args !== '') || $args === '0' || $args === 0) {
 		} else {
 			return;
 		}
