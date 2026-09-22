@@ -86,7 +86,7 @@ class Register extends Account {
 			0
 		);
 		
-		$create = $this->db->query("INSERT INTO `account_data` (`name`, `password`, `last_ip`, `email`, `activated`, `created_at`) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)", $data);
+		$create = $this->db->query("INSERT INTO `account_data` (`name`, `password`, `last_ip`, `email`, `activated`, `creation_date`) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)", $data);
 		if(!$create) throw new Exception('There was problem creating your account, please contact support.');
 		
 		try {

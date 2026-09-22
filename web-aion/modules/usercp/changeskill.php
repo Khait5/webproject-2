@@ -39,7 +39,7 @@ try {
 	if(!is_array($playerData)) throw new Exception('Your request could not be completed, please try again later. [2]');
 	
 	# check item
-	$itemData = $sdb->queryFetchSingle("SELECT * FROM `inventory` WHERE `item_owner` = ? AND `is_equiped` = ? AND `item_unique_id` = ?", array($playerData['id'], 0, $_GET['item']));
+	$itemData = $sdb->queryFetchSingle("SELECT * FROM `inventory` WHERE `item_owner` = ? AND `is_equipped` = ? AND `item_unique_id` = ?", array($playerData['id'], 0, $_GET['item']));
 	if(!is_array($itemData)) throw new Exception('Oops! we could not find this item in your inventory!');
 	
 	# check if item is +20

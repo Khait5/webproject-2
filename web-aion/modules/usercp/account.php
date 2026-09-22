@@ -46,7 +46,7 @@ try {
 		echo '</tr>';
 		echo '<tr>';
 			echo '<td>Registration Date:</td>';
-			echo '<td>'.(check($accountData['created_at']) ? date("F jS, Y", strtotime($accountData['created_at'])) : '<i>Unknown</i>').'</td>';
+			echo '<td>'.(check($accountData['creation_date']) ? date("F jS, Y", strtotime($accountData['creation_date'])) : '<i>Unknown</i>').'</td>';
 		echo '</tr>';
 		echo '<tr>';
 			echo '<td>Account Type:</td>';

@@ -45,7 +45,7 @@ echo '<div class="row">';
 					$qty = $_POST['reward_qty'];
 					
 					# Send Item
-					//$sendItem = $sdb->query("INSERT INTO `web_reward` (`item_owner`, `item_id`, `item_count`) VALUES (?, ?, ?)", array($playerId, $itemId, $qty));
+					//$sendItem = $sdb->query("INSERT INTO `player_web_rewards` (`player_id`, `item_id`, `item_count`) VALUES (?, ?, ?)", array($playerId, $itemId, $qty));
 					//if(!$sendItem) throw new Exception("OMG you broke it! x.x");
 					
 					/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
