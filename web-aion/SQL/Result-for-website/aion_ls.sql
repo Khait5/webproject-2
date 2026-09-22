@@ -1,15 +1,36 @@
 -- ----------------------------
--- Adding extra columns for `account_data`
+-- account_data (Merged with BeyondAion structure + Website columns)
 -- ----------------------------
-ALTER TABLE `account_data` ADD COLUMN `confirmed` varchar(65) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
-ALTER TABLE `account_data` ADD COLUMN `email` varchar(60) DEFAULT NULL;
-ALTER TABLE `account_data` ADD COLUMN `hash` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL;
-ALTER TABLE `account_data` ADD COLUMN `toll` int(11) NOT NULL DEFAULT '0';
+DROP TABLE IF EXISTS `account_data`;
+CREATE TABLE `account_data` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `ext_auth_name` varchar(45) DEFAULT NULL,
+  `password` varchar(65) NOT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `activated` boolean NOT NULL DEFAULT TRUE,
+  `access_level` tinyint NOT NULL DEFAULT '0',
+  `membership` tinyint NOT NULL DEFAULT '0',
+  `old_membership` tinyint NOT NULL DEFAULT '0',
+  `last_server` tinyint NOT NULL DEFAULT '-1',
+  `last_ip` varchar(20) DEFAULT NULL,
+  `last_mac` varchar(20) NOT NULL DEFAULT 'xx-xx-xx-xx-xx-xx',
+  `last_hdd_serial` varchar(100) DEFAULT NULL,
+  `allowed_hdd_serial` varchar(100) DEFAULT NULL,
+  `ip_force` varchar(20) DEFAULT NULL,
+  `expire` date DEFAULT NULL,
+  `confirmed` varchar(65) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email` varchar(60) DEFAULT NULL,
+  `hash` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `toll` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`),
+  UNIQUE KEY `ext_auth_name` (`ext_auth_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Add new tables needed by website logic to the Login DB
 -- ----------------------------
-
 CREATE TABLE IF NOT EXISTS `account_security` (
   `id` int(11) NOT NULL,
   `email_confirmed` tinyint(1) NOT NULL DEFAULT '0',
@@ -32,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `aion_itemlist` (
   `updated` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`item_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
 CREATE TABLE IF NOT EXISTS `aion_skilllist` (
   `skill_id` int(11) unsigned NOT NULL,
   `skill_name` varchar(100) DEFAULT NULL,
