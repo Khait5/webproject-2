@@ -593,7 +593,7 @@ class Shop {
 		
 		// INSERT WEB_REWARD
 		/*
-		$sendItem = $this->sdb->query("INSERT INTO `web_reward` (`item_owner`, `item_id`, `item_count`) VALUES (?, ?, ?)", array($this->_characterData['id'], $this->_itemData['item_id'], $this->_itemData['count']));
+		$sendItem = $this->sdb->query("INSERT INTO `player_web_rewards` (`player_id`, `item_id`, `item_count`) VALUES (?, ?, ?)", array($this->_characterData['id'], $this->_itemData['item_id'], $this->_itemData['count']));
 		if(!$sendItem) throw new Exception("There has been an error, please contact support. [Q1]");
 		*/
 			
@@ -686,7 +686,7 @@ class Shop {
 		if(!$subtractCredits) throw new Exception('Your purchase could not be processed, please contact support.');
 		
 		// INSERT WEB_REWARD
-		//$sendItem = $this->sdb->query("INSERT INTO `web_reward` (`item_owner`, `item_id`, `item_count`) VALUES (?, ?, ?)", array($this->_characterData['id'], $this->_itemData['item_id'], $this->_itemData['item_qty']));
+		//$sendItem = $this->sdb->query("INSERT INTO `player_web_rewards` (`player_id`, `item_id`, `item_count`) VALUES (?, ?, ?)", array($this->_characterData['id'], $this->_itemData['item_id'], $this->_itemData['item_qty']));
 		//if(!$sendItem) throw new Exception("There has been an error, please contact support. [Q1]");
 		
 		// GET LAST INVENTORY ID

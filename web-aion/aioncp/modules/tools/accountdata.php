@@ -117,7 +117,7 @@ if(!check($_GET['name'])) {
 							echo '<li class="list-group-item"><strong>Membership</strong><span class="pull-right text-muted small">'.$membershipType.'</span></li>';
 							echo '<li class="list-group-item"><strong>Old Membership</strong><span class="pull-right text-muted small">'.$oldMembershipType.'</span></li>';
 							if(check($vipVxpiration)) echo '<li class="list-group-item"><strong>VIP Expiration</strong><span class="pull-right text-muted small">'.$vipVxpiration.'</span></li>';
-							echo '<li class="list-group-item"><strong>Registration Date</strong><span class="pull-right text-muted small">'.(check($accountData['created_at']) ? date("Y-m-d h:i A", strtotime($accountData['created_at'])) : '<em>none</em>').'</span></li>';
+							echo '<li class="list-group-item"><strong>Registration Date</strong><span class="pull-right text-muted small">'.(check($accountData['creation_date']) ? date("Y-m-d h:i A", strtotime($accountData['creation_date'])) : '<em>none</em>').'</span></li>';
 						echo '</ul>';
 						
 						if(is_array($accountSecurity)) {

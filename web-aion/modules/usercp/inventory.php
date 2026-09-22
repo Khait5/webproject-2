@@ -26,10 +26,10 @@ try {
 	echo '<br /><br />';
 	
 	# player inventory (non-equipped)
-	$playerInventory = $sdb->queryFetch("SELECT * FROM `inventory` WHERE `item_owner` = ? AND `is_equiped` = ?", array($playerData['id'], 0));
+	$playerInventory = $sdb->queryFetch("SELECT * FROM `inventory` WHERE `item_owner` = ? AND `is_equipped` = ?", array($playerData['id'], 0));
 	
 	# player inventory (equipped)
-	$playerInventoryEquipped = $sdb->queryFetch("SELECT * FROM `inventory` WHERE `item_owner` = ? AND `is_equiped` = ?", array($playerData['id'], 1));
+	$playerInventoryEquipped = $sdb->queryFetch("SELECT * FROM `inventory` WHERE `item_owner` = ? AND `is_equipped` = ?", array($playerData['id'], 1));
 	
 	# EQUIPPED
 	if(is_array($playerInventoryEquipped)) {

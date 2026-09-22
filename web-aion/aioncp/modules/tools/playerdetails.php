@@ -86,7 +86,7 @@ if(!check($_GET['name'])) {
 				echo '<div class="panel panel-info">';
 					echo '<div class="panel-heading">Equipped Items</div>';
 					echo '<div class="panel-body">';
-						$equippedItems = $sdb->queryFetch("SELECT * FROM inventory WHERE item_owner = ? AND is_equiped = 1", array($playerData['id']));
+						$equippedItems = $sdb->queryFetch("SELECT * FROM inventory WHERE item_owner = ? AND is_equipped = 1", array($playerData['id']));
 						if(is_array($equippedItems)) {
 							echo '<table class="table table-hover table-condensed">';
 							echo '<thead>';
@@ -122,7 +122,7 @@ if(!check($_GET['name'])) {
 				echo '<div class="panel panel-info">';
 					echo '<div class="panel-heading">Inventory</div>';
 					echo '<div class="panel-body">';
-						$inventoryItems = $sdb->queryFetch("SELECT * FROM inventory WHERE item_owner = ? AND is_equiped = 0", array($playerData['id']));
+						$inventoryItems = $sdb->queryFetch("SELECT * FROM inventory WHERE item_owner = ? AND is_equipped = 0", array($playerData['id']));
 						if(is_array($inventoryItems)) {
 							echo '<table class="table table-hover table-condensed">';
 							echo '<thead>';
