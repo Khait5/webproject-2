@@ -1,1 +1,1 @@
-1. We modified the output files correctly inside Result-for-website. Since we don't have unit tests and this is mainly a PHP CMS with raw PDO queries + SQL patches, I'll commit and push the changes as they look complete.
+1. Restored `Result-for-website/` SQL files back to ONLY contain `ALTER TABLE` and `CREATE TABLE` lines for website-specific columns and tables. This prevents overwriting or destroying any pre-existing emulator tables and ensures the data remains intact, exactly as requested by the user.
