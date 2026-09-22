@@ -21,7 +21,7 @@ if(!Validator::UnsignedNumber($_GET['key'])) redirect();
 if(time() > ($_GET['key']+3600)) redirect(); // 60 minutes already passed, key is not valid anymore
 
 # Change Password Process
-if(check($_POST['pwd_username'])) {
+if(isset($_POST['pwd_username']) && check($_POST['pwd_username'])) {
 	
 	try {
 		
@@ -53,7 +53,7 @@ if(check($_POST['pwd_username'])) {
 			if(check($extraSecurityData['security_pin'])) {
 				
 				# verify using security pin
-				if(check($_POST['pwd_pin'])) {
+				if(isset($_POST['pwd_pin']) && check($_POST['pwd_pin'])) {
 					try {
 						if($_POST['pwd_pin'] != $extraSecurityData['security_pin']) throw new Exception('The security PIN entered is not valid.');
 						

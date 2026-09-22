@@ -8,6 +8,8 @@
  */
 
 class Email {
+
+	protected $db;
 	
 	private $_active = false;
 	private $_smtp = false;

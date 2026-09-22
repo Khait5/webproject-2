@@ -8,7 +8,7 @@
  */
 
 
-if(check($_POST['submit'])) {
+if(isset($_POST['submit']) && check($_POST['submit'])) {
 	try {
 		
 		if(!check($_POST['id'])) throw new Exception('Invalid id (not set).');
@@ -25,7 +25,7 @@ if(check($_POST['submit'])) {
 		$categoryInfo = $db->queryFetchSingle("SELECT * FROM `aioncms`.`website_shop_categories` WHERE `id` = ?", array($_POST['id']));
 		if(!is_array($categoryInfo)) throw new Exception('The category id is not valid.');
 		
-		if(check($_POST['parent'])) {
+		if(isset($_POST['parent']) && check($_POST['parent'])) {
 			if(!Validator::UnsignedNumber($_POST['parent'])) throw new Exception('Invalid parent (not a number).');
 			
 			$checkParent = $db->queryFetchSingle("SELECT * FROM `aioncms`.`website_shop_categories` WHERE `id` = ?", array($_POST['parent']));
@@ -73,7 +73,7 @@ if(check($_GET['id'])) {
 	}
 }
 
-if(check($_POST['add_category'])) {
+if(isset($_POST['add_category']) && check($_POST['add_category'])) {
 	try {
 		
 		if(!check($_POST['add_parent'])) throw new Exception('Incomplete request.');

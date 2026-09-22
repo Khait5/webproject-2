@@ -37,7 +37,7 @@ try {
 	}
 	
 	// ticket reply
-	if(check($_POST['reply_submit'])) {
+	if(isset($_POST['reply_submit']) && check($_POST['reply_submit'])) {
 		try {
 			
 			$staffMemberName = check($_SESSION['aioncp']['name']) ? $_SESSION['aioncp']['name'] : 'Staff';

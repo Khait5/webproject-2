@@ -8,6 +8,8 @@
  */
 
 class ReferralSystem extends Account {
+
+	protected $db;
 	
 	protected $_kinahPerHour = 3600000;
 	protected $_requiredOnlineHours;

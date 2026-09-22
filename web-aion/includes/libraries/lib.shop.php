@@ -9,6 +9,10 @@
 
 
 class Shop {
+
+	protected $sdb;
+
+	protected $db;
 	
 	private $_itemsPerPage = 10;
 	private $_currentPage = 1;

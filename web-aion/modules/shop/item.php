@@ -65,7 +65,7 @@ try {
 				echo '</div>';
 			echo '</div>';
 			
-			if(check($_POST['submit_purchase'])) {
+			if(isset($_POST['submit_purchase']) && check($_POST['submit_purchase'])) {
 				try {
 					if($_POST['submit_purchase'] != 'ok') throw new Exception('Could not purchase item.');
 					if(!check($_POST['character'])) throw new Exception('The selected character is not valid [1].');

@@ -8,6 +8,10 @@
  */
 
 class itemEnchantment {
+
+	protected $sdb;
+
+	protected $db;
 	
 	protected $_username;
 	protected $_server;
@@ -176,7 +180,7 @@ class itemEnchantment {
 		
 		if(!is_array($this->itemList)) throw new Exception('No items available for enchanting.');
 		
-		if(check($_POST['enchant_submit'])) {
+		if(isset($_POST['enchant_submit']) && check($_POST['enchant_submit'])) {
 			try {
 				
 				if($this->_enchantProcess($playerData['id'], $_POST['item'])) {

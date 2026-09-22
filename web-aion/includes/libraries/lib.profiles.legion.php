@@ -9,6 +9,10 @@
 
 
 class LegionProfile {
+
+	protected $sdb;
+
+	protected $db;
 	
 	private $_profilesTable = '`aioncms`.`profiles_legion`';
 	private $_id;

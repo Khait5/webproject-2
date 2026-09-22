@@ -46,7 +46,7 @@ try {
 	}
 	
 	// form submit
-	if(check($_POST['profile_submit'])) {
+	if(isset($_POST['profile_submit']) && check($_POST['profile_submit'])) {
 		try {
 			
 			$LegionProfileUpdate = new LegionProfile();

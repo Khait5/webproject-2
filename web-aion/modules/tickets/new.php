@@ -14,7 +14,7 @@
 <br /><br />
 
 <?php
-if(check($_POST['submit'])) {
+if(isset($_POST['submit']) && check($_POST['submit'])) {
 	try {
 		
 		$Tickets = new Tickets();

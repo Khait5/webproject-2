@@ -19,7 +19,7 @@ if(!is_array($categoriesList)) throw new Exception('There are no categories!');
 if(!array_key_exists($_GET['category'], $categoriesList)) throw new Exception('The provided category id is not valid.');
 
 
-if(check($_POST['item_add'])) {
+if(isset($_POST['item_add']) && check($_POST['item_add'])) {
 	try {
 		
 		if(!check($_POST['item_id'])) throw new Exception('You must provide a valid item id.');

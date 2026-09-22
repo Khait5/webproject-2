@@ -8,7 +8,7 @@
  */
 
 // ADD ITEM
-if(check($_POST['item_add'])) {
+if(isset($_POST['item_add']) && check($_POST['item_add'])) {
 	try {
 		# filters
 		if(!check($_POST['item_id'])) throw new Exception('You didn\'t enter a valid item id.');
@@ -69,7 +69,7 @@ echo '<div class="row">';
 				echo '<tbody>';
 					foreach($result as $row) {
 						
-						if(check($_POST['edit_items'])) {
+						if(isset($_POST['edit_items']) && check($_POST['edit_items'])) {
 							$newCost = $_POST['cost_' . $row['item_id']];
 							$newLimit = $_POST['limit_' . $row['item_id']];
 							$newQty = $_POST['qty_' . $row['item_id']];
@@ -99,7 +99,7 @@ echo '<div class="row">';
 				echo '</form>';
 				
 				// EDIT ITEM
-				if(check($_POST['edit_items'])) {
+				if(isset($_POST['edit_items']) && check($_POST['edit_items'])) {
 					try {
 						if(is_array($modifiedItems)) {
 							foreach($modifiedItems as $editItem) {

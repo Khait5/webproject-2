@@ -79,7 +79,7 @@
 			}
 			
 			# opt-in process
-			if(check($_POST['character_submit'])) {
+			if(isset($_POST['character_submit']) && check($_POST['character_submit'])) {
 				try {
 					if(!check($_POST['character_name'])) throw new Exception('The character you selected is not valid.');
 					

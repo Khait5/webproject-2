@@ -21,7 +21,7 @@ if(!Validator::UnsignedNumber($_GET['key'])) redirect();
 if(time() > ($_GET['key']+3600)) redirect(); // 60 minutes already passed, key is not valid anymore
 
 # Change Password Process
-if(check($_POST['pwd_username'])) {
+if(isset($_POST['pwd_username']) && check($_POST['pwd_username'])) {
 	
 	try {
 		

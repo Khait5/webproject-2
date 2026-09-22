@@ -45,7 +45,7 @@ if(!check($_GET['name'])) {
 	
 } else {
 
-	if(check($_POST['ban_complete'])) {
+	if(isset($_POST['ban_complete']) && check($_POST['ban_complete'])) {
 		try {
 			if(!check($_POST['ban_account'])) throw new Exception("Invalid account.");
 			if(!check($_POST['ban_reason'])) throw new Exception("Please type the reason of the ban.");

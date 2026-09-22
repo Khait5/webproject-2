@@ -28,7 +28,7 @@ echo '<div class="row">';
 	echo '</div>';
 echo '</div>';
 	
-if(check($_POST['email_address'])) {
+if(isset($_POST['email_address']) && check($_POST['email_address'])) {
 	
 	try {
 		

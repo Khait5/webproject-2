@@ -17,7 +17,7 @@
 
 <?php
 # Login Process
-if(check($_POST['login_submit'])) {
+if(isset($_POST['login_submit']) && check($_POST['login_submit'])) {
 	try {
 		$accountLogin = new Login();
 		$accountLogin->setUsername(strtolower($_POST['login_username']));

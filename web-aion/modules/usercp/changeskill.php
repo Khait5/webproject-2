@@ -61,7 +61,7 @@ try {
 	if(!is_array($itemSkills)) throw new Exception('Sorry! we couldn\'t identify this item, please contact support. [2]');
 	
 	
-	if(check($_POST['submit_skillchange'])) {
+	if(isset($_POST['submit_skillchange']) && check($_POST['submit_skillchange'])) {
 		try {
 			
 			# check online
