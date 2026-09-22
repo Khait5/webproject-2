@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS `aion_itemlist` (
   `updated` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`item_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
 CREATE TABLE IF NOT EXISTS `aion_skilllist` (
   `skill_id` int(11) unsigned NOT NULL,
   `skill_name` varchar(100) DEFAULT NULL,
