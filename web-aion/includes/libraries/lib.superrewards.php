@@ -8,6 +8,8 @@
  */
 
 class SuperRewards {
+
+	protected $db;
 	
 	protected $_secretKey;
 	protected $_id;

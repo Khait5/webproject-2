@@ -16,7 +16,7 @@
 
 <?php
 # Change Password Process
-if(check($_POST['pwd_submit'])) {
+if(isset($_POST['pwd_submit']) && check($_POST['pwd_submit'])) {
 	try {
 		
 		if(!check($_POST['pwd_old'], $_POST['pwd_new'], $_POST['pwd_new_confirm'])) throw new Exception('Please complete all fields.');

@@ -9,6 +9,8 @@
 
 
 class Register extends Account {
+
+	protected $db;
 	
 	private $_usernameMinLen = 6;
 	private $_usernameMaxLen = 25;

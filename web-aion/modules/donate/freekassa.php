@@ -25,7 +25,7 @@ Thanks for the support!<br>
 
 $donationOptions = config('fk_donation_options');
 
-if(check($_POST['kassa-buy'])) {
+if(isset($_POST['kassa-buy']) && check($_POST['kassa-buy'])) {
 	try {
 		
 		if(!check($_SESSION['userid'])) throw new Exception('Your account information could not be loaded.');

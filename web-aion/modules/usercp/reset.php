@@ -70,7 +70,7 @@ try {
 			
 			# verify security questions
 			echo '<div class="col-md-8 col-md-offset-2">';
-				if(check($_POST['pwd_pin'])) {
+				if(isset($_POST['pwd_pin']) && check($_POST['pwd_pin'])) {
 					try {
 						if($_POST['pwd_pin'] != $accountSecurity['security_pin']) throw new Exception('The security PIN entered is not valid.');
 						

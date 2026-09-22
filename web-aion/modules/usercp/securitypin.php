@@ -25,7 +25,7 @@ try {
 	if(!is_array($accountData)) throw new Exception('Could not load your account\'s information.');
 	if(check($accountSecurity['security_pin'])) throw new Exception('You have already set your security pin.');
 	
-	if(check($_POST['sp_submit'])) {
+	if(isset($_POST['sp_submit']) && check($_POST['sp_submit'])) {
 		try {
 			# filters
 			if(!check($_POST['sp_pin'])) throw new Exception('Please fill all the required fields.');

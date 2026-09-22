@@ -24,7 +24,7 @@ try {
 	
 	// ticket reply
 	if($ticketData['closed'] != 1) {
-		if(check($_POST['reply_submit'])) {
+		if(isset($_POST['reply_submit']) && check($_POST['reply_submit'])) {
 			try {
 				$TicketReply = new Tickets();
 				$TicketReply->setId($ticketData['id']);

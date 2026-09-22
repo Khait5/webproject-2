@@ -79,7 +79,7 @@ try {
 		}
 	}
 	
-	if(check($_POST['submit_enchant'])) {
+	if(isset($_POST['submit_enchant']) && check($_POST['submit_enchant'])) {
 		try {
 			
 			# check online

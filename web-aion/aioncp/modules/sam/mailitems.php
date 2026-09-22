@@ -12,7 +12,7 @@ $aionDatabaseLink = "https://aioncodex.com/us/item/";
 $excludeFromLogs = array();
 
 if(check($_POST['submit_filter_date'], $_POST['filter_date1'], $_POST['filter_date2'])) {
-	if(check($_POST['staffmember'])) {
+	if(isset($_POST['staffmember']) && check($_POST['staffmember'])) {
 		redirect(__BASE_URL__.'sam/mailitems/staffmember/' . $_POST['staffmember'] . '/from/' . $_POST['filter_date1'] . '/to/' . $_POST['filter_date2']);
 	} else {
 		redirect(__BASE_URL__.'sam/mailitems/from/' . $_POST['filter_date1'] . '/to/' . $_POST['filter_date2']);
@@ -24,7 +24,7 @@ echo '<div class="row">';
 		echo '<div class="block">';
 			echo '<div class="block-content">';
 			
-			if(check($_POST['reward_submit'])) {
+			if(isset($_POST['reward_submit']) && check($_POST['reward_submit'])) {
 				try {
 					if(!check($_POST['reward_player'])) throw new Exception('You must enter the player name.');
 					if(!check($_POST['reward_itemid'])) throw new Exception('You must enter the item id.');

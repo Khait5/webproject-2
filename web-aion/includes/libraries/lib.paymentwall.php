@@ -8,6 +8,8 @@
  */
 
 class Paymentwall {
+
+	protected $db;
 	
 	protected $_requiredData = array(
 		'uid',

@@ -8,6 +8,8 @@
  */
 
 class Tickets {
+
+	protected $db;
 	
 	protected $_id;
 	protected $_subject;

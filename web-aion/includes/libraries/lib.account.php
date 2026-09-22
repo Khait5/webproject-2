@@ -9,6 +9,8 @@
 
 
 class Account {
+
+	protected $db;
 	
 	protected $_userid;
 	protected $_username;

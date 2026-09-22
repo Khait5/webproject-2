@@ -25,7 +25,7 @@ if(!is_array($categoriesList)) throw new Exception('There are no categories!');
 if(!array_key_exists($shopItemData['category'], $categoriesList)) throw new Exception('The provided category id is not valid.');
 
 
-if(check($_POST['item_edit'])) {
+if(isset($_POST['item_edit']) && check($_POST['item_edit'])) {
 	try {
 		
 		if(!check($_POST['item_id'])) throw new Exception('You must provide a valid item id.');

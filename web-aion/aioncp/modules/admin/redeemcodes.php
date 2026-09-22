@@ -24,7 +24,7 @@ if(check($_GET['disable'])) {
 	}
 }
 
-if(check($_POST['code_submit'])) {
+if(isset($_POST['code_submit']) && check($_POST['code_submit'])) {
 	try {
 		
 		$RedeemCodeAdd = new RedeemCode();

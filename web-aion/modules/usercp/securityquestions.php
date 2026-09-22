@@ -27,7 +27,7 @@ try {
 	
 	$securityQuestions = config('security_questions', true);
 	
-	if(check($_POST['sq_submit'])) {
+	if(isset($_POST['sq_submit']) && check($_POST['sq_submit'])) {
 		try {
 			# filters
 			if(!check($_POST['question_1'])) throw new Exception('Please fill all the required fields.');

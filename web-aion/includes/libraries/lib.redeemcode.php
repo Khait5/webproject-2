@@ -8,6 +8,8 @@
  */
 
 class RedeemCode {
+
+	protected $db;
 	
 	private $_codeMaxLen = 50;
 	private $_codeTypes = array(

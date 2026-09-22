@@ -7,7 +7,7 @@
  * @copyright (c) 2012-2019 Lautaro Angelico, All Rights Reserved
  */
 
-if(check($_POST['unstick_submit'])) {
+if(isset($_POST['unstick_submit']) && check($_POST['unstick_submit'])) {
 	try {
 		if(!check($_POST['unstick_input'])) throw new Exception('Incomplete request.');
 		if(!check($_POST['unstick_type'])) throw new Exception('Incomplete request.');

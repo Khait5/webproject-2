@@ -8,6 +8,8 @@
  */
 
 class LotterySystem {
+
+	protected $db;
 	
 	private $_active = true;
 	

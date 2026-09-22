@@ -17,7 +17,7 @@
 
 <?php
 # Login Process
-if(check($_POST['register_submit'])) {
+if(isset($_POST['register_submit']) && check($_POST['register_submit'])) {
 	try {
 		if(!check($_POST['register_username'])) throw new Exception('Please complete all the fields in the registration form.');
 		if(!check($_POST['register_password'])) throw new Exception('Please complete all the fields in the registration form.');
@@ -29,7 +29,7 @@ if(check($_POST['register_submit'])) {
 		$Register->setUsername($_POST['register_username']);
 		$Register->setPassword($_POST['register_password']);
 		$Register->setEmail($_POST['register_email']);
-		if(check($_POST['referral'])) {
+		if(isset($_POST['referral']) && check($_POST['referral'])) {
 			$Register->setReferralId($_POST['referral']);
 		}
 		
