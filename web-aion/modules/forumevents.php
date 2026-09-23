@@ -18,7 +18,7 @@ function convertXML($object) {
 }
 
 $forumRss = '';
-$loadRssXml = simplexml_load_file($forumRss);
+if(!empty($forumRss)) { $loadRssXml = @simplexml_load_file($forumRss); } else { $loadRssXml = false; }
 if(!$loadRssXml) die();
 $eventsFeed = $loadRssXml->channel;
 

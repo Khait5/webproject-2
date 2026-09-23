@@ -8,6 +8,7 @@
  */
 
 
+#[\AllowDynamicProperties]
 class LegionProfile {
 
 	protected $sdb;

@@ -8,6 +8,7 @@
  */
 
 
+#[\AllowDynamicProperties]
 class database {
 	
 	public $db;
@@ -34,7 +35,7 @@ class database {
 	 * @return boolean
 	 */
 	public function query($sql, $array='') {
-		if(!is_array($array)) $array = array($array);
+		if(!is_array($array)) { if($array === '') { $array = NULL; } else { $array = array($array); } }
 		$query = $this->db->prepare($sql);
 		if (!$query) {
 			$this->error = true;
@@ -62,7 +63,7 @@ class database {
 	 * @return boolean|array
 	 */
 	public function queryFetch($sql, $array='') {
-		if(!is_array($array)) $array = array($array);
+		if(!is_array($array)) { if($array === '') { $array = NULL; } else { $array = array($array); } }
 		$query = $this->db->prepare($sql);
 		if (!$query) {
 			$this->error = true;
