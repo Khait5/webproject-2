@@ -7,6 +7,7 @@
  * @copyright (c) 2012-2019 Lautaro Angelico, All Rights Reserved
  */
 
+#[\AllowDynamicProperties]
 class Handler {
 	
 	private static $db;
@@ -61,7 +62,7 @@ class Handler {
 						$_GET['submodule'] .= $thisReq;
 					} else {
 						$parentModuleData = $db->queryFetchSingle("SELECT * FROM `aioncms`.`website_modules` WHERE file = ? AND parent IS NULL AND status IS TRUE", array($parentModule));
-						if($parentModuleData['access'] == 2) {
+						if(is_array($parentModuleData) && isset($parentModuleData['access']) && $parentModuleData['access'] == 2) {
 							# check if logged in
 							if(!isLoggedIn()) redirect('login/');
 						}
@@ -74,7 +75,7 @@ class Handler {
 			for($i = count(explode("/", $_GET['submodule']))+1; $i < count($request); $i++) {
 				if(@check($request[$i])) {
 					if(@check($request[$i+1])) {
-						$_GET[$request[$i]] = filter_var($request[$i+1], FILTER_SANITIZE_STRING);
+						$_GET[$request[$i]] = htmlspecialchars($request[$i+1], ENT_QUOTES | ENT_SUBSTITUTE, "UTF-8");
 						$_GET[$request[$i]] = $request[$i+1];
 					} else {
 						$_GET[$request[$i]] = NULL;

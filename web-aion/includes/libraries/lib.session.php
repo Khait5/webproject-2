@@ -7,6 +7,7 @@
  * @copyright (c) 2012-2019 Lautaro Angelico, All Rights Reserved
  */
 
+#[\AllowDynamicProperties]
 class sessionControl {
 	
 	private static $db;

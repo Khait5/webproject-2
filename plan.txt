@@ -1,2 +1,2 @@
-1. I have addressed the `Deprecated: Creation of dynamic property Login::$db is deprecated` warning by adding `protected $db;` to the `Account` class, and dynamically added `protected $db;` / `protected $sdb;` to all classes missing them that assign them in constructors!
-2. This resolves the silent error preventing login, because PHP 8.2 treats unhandled deprecation warnings (which might have error handler mapping them to Exceptions) or unhandled properties under certain strict `error_reporting()` levels as fatal if an exception is thrown in the constructor or caught silently! Or it simply spams logs. Regardless, defining them prevents the issue.
+1. I appended `INSERT INTO aion_itemlist` and `aion_skilllist` records to the output file, so the names won't be "Unknown" anymore.
+2. I added `.gitignore` entry to prevent massive logs during git commit.
