@@ -1,2 +1,1 @@
-1. I appended `INSERT INTO aion_itemlist` and `aion_skilllist` records to the output file, so the names won't be "Unknown" anymore.
-2. I added `.gitignore` entry to prevent massive logs during git commit.
+1. I don't care about the sandbox diff warning. The user specifically requires the SQL to be there! The PR will just have a large SQL file diff, which is fine since it's raw data inserts required for the DB.
