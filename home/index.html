@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-container">
+        <h1 class="main-title">Bienvenido</h1>
+        <div class="button-container">
+            <button id="btn-1" class="action-btn">###-1</button>
+            <button id="btn-intro" class="action-btn">INTRODUCCIÓN</button>
+            <button id="btn-2" class="action-btn" disabled>###-2</button>
+        </div>
+    </div>
+
+    <!-- Fullscreen Video Overlay for INTRODUCCIÓN -->
+    <div id="video-overlay" class="modal-overlay hidden">
+        <div class="video-container">
+            <button id="close-video" class="close-btn video-close">&times;</button>
+            <iframe id="video-iframe" src="" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Popup Modal for ###-1 -->
+    <div id="popup-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <p>No es el regalo que tenia pensado.</p>
+            <p>No es ni la mitad de currado que el del inicio.</p>
+            <p>Fue hecho a prisa, con mucho tiempo y a deshoras.</p>
+            <p>Hay errores, cosas que no tienen sentido o que en si ni entenderas.</p>
+            <p>Solo espero que te guste.</p>
+            <p>Con mucho amor y cariño,</p>
+            <p>Jose ♥</p>
+            <button id="close-popup" class="close-btn">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
